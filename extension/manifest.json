@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Job Observer",
+  "version": "1.0.0",
+  "description": "Обновляет открытые вкладки с вакансиями и отправляет новые за сегодня в Telegram.",
+  "permissions": ["tabs", "scripting", "alarms", "storage"],
+  "host_permissions": [
+    "https://djinni.co/*",
+    "https://jobs.dou.ua/*",
+    "https://www.work.ua/*",
+    "https://robota.ua/*",
+    "https://www.jobico.io/*",
+    "https://jobico.io/*",
+    "https://web3.career/*",
+    "https://www.linkedin.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "Job Observer" }
+}

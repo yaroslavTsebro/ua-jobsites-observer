@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font: 13px system-ui, sans-serif; width: 460px; margin: 12px; }
+    h1 { font-size: 15px; margin: 0 0 10px; display: flex; justify-content: space-between; }
+    #state { font-weight: normal; font-size: 12px; color: #888; }
+    .settings { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    label { display: block; color: #555; font-size: 12px; }
+    input { width: 100%; box-sizing: border-box; padding: 4px 6px; }
+    .row { display: flex; gap: 6px; margin-top: 8px; }
+    button { flex: 1; padding: 6px; cursor: pointer; }
+    button:disabled { cursor: default; opacity: .5; }
+    #log { margin-top: 10px; max-height: 420px; overflow-y: auto; font: 12px ui-monospace, Consolas, monospace;
+           border: 1px solid #ddd; border-radius: 4px; padding: 4px 6px; background: #fafafa; }
+    .e { padding: 2px 0; border-bottom: 1px solid #eee; white-space: pre-wrap; word-break: break-all; }
+    .e time { color: #999; margin-right: 4px; }
+    .e.found { background: #e6f4ea; color: #145c26; font-weight: 600; border-left: 3px solid #2a9d4b;
+               padding-left: 5px; margin: 2px 0; border-radius: 2px; }
+    #unread { margin: 0 0 10px; border: 1px solid #f3c1bd; background: #fdf0ef; border-radius: 4px; padding: 6px 8px; }
+    #unread.zero { border-color: #ddd; background: #fafafa; color: #888; }
+    #unread summary { cursor: pointer; font-weight: 600; }
+    #unread ul { margin: 6px 0 0; padding-left: 18px; max-height: 160px; overflow-y: auto; }
+    #unread li { margin: 2px 0; }
+    #unread a { color: #1a5fb4; cursor: pointer; text-decoration: none; }
+    #unread a:hover { text-decoration: underline; }
+    #unread .meta { color: #888; font-size: 11px; }
+    .ok { color: #1e7e34; } .warn { color: #b8860b; } .error { color: #c0392b; } .info { color: #333; }
+    .muted { color: #888; }
+    .toggle { font-weight: 600; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    .toggle.on { background: #e6f4ea; color: #1e7e34; border-color: #9fd3ad; }
+    .toggle.off { background: #f1f1f1; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Job Observer <span id="state"></span></h1>
+  <div class="row" style="margin: 0 0 10px">
+    <button id="toggle" class="toggle">…</button>
+  </div>
+  <details id="unread" class="zero">
+    <summary>📬 Непрочитанных в TG: <span id="unreadCount">…</span></summary>
+    <ul id="unreadList"></ul>
+  </details>
+  <div class="settings">
+    <div><label for="interval">Интервал, мин</label><input id="interval" type="number" min="1"></div>
+    <div><label for="server">Сервер</label><input id="server" type="text"></div>
+  </div>
+  <div class="row">
+    <button id="save">Сохранить</button>
+    <button id="run">Проверить сейчас</button>
+    <button id="test">🧪 Тест</button>
+    <button id="snapshot" title="Сохраняет текущие страницы для офлайн-тестов. Вкладки НЕ перезагружаются.">📸 Снимок</button>
+  </div>
+  <div id="log"><div class="muted">Лог пуст — запусти проверку</div></div>
+  <script src="popup.js"></script>
+</body>
+</html>
